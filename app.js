@@ -115,7 +115,6 @@ function initScrollAnimations() {
   }, observerOptions);
 
   const revealIds = [
-    // Homepage
     'gap-reveal-grid',
     'solution-reveal-grid',
     'highlights-reveal-grid',
@@ -127,7 +126,6 @@ function initScrollAnimations() {
     'home-founder-reveal',
     'enquiry-reveal-box',
 
-    // About Page
     'about-hero-reveal',
     'about-what-reveal',
     'about-why-reveal',
@@ -135,17 +133,18 @@ function initScrollAnimations() {
     'about-how-reveal',
     'about-model-reveal',
     'about-founder-reveal',
+
     'readiness-header-reveal',
     'hands-on-learning',
     'technical-skill-exposure',
     'workplace-safety-awareness',
     'team-production-understanding',
+
     'about-who-reveal',
     'about-outcomes-reveal',
     'about-connection-reveal',
     'about-cta-reveal',
 
-    // Students Page
     'students-hero-reveal',
     'students-reality-reveal',
     'students-readiness-reveal',
@@ -154,11 +153,10 @@ function initScrollAnimations() {
     'students-chips-reveal',
     'students-outcomes-reveal',
     'students-cta-reveal',
-    'readiness-map-reveal', // compatibility helper
-    'student-benefits-reveal', // compatibility helper
-    'student-cta-reveal', // compatibility helper
+    'readiness-map-reveal',
+    'student-benefits-reveal',
+    'student-cta-reveal',
 
-    // Institutions Page
     'institutions-hero-reveal',
     'institutions-problem-reveal',
     'institutions-gains-reveal',
@@ -168,7 +166,6 @@ function initScrollAnimations() {
     'institutions-why-reveal',
     'institutions-cta-reveal',
 
-    // Industry Connect Page
     'industry-hero-reveal',
     'industry-challenge-reveal',
     'industry-gains-reveal',
@@ -177,14 +174,12 @@ function initScrollAnimations() {
     'industry-lens-reveal',
     'industry-cta-reveal',
 
-    // Contact Page
     'contact-hero-reveal',
     'contact-cards-reveal',
     'contact-form-reveal',
     'contact-faq-reveal',
     'contact-cta-reveal',
 
-    // Footer
     'footer-reveal-block'
   ];
 
