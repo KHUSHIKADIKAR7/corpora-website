@@ -16,37 +16,336 @@
 </head>
 <body>
 
-  <!-- 1. Floating Pill Header -->
-  <div class="header-wrapper" id="floating-header-wrapper">
-    <header class="header-pill" id="main-pill-header">
-      <!-- Logo -->
-      <a href="index.html" class="logo-link" id="header-logo-link">
-        <img src="assets/images/corpora-logo.png.png" alt="CORPORA Logo" class="logo-img" id="header-logo-img">
-      </a>
-      
-      <!-- Menu Toggle Action -->
-      <button class="menu-toggle-btn" id="menu-dropdown-toggle" aria-label="Toggle Menu" aria-expanded="false">
-        <span>Menu</span>
-        <div class="toggle-icon">
-          <span></span>
-          <span></span>
-        </div>
-      </button>
+  <!-- 1. Site Header (matches homepage) -->
+  <div class="site-header-shell">
+    <style>
+      .site-header-shell {
+        position: fixed;
+        top: 12px;
+        left: 0;
+        width: 100%;
+        padding: 0 18px;
+        box-sizing: border-box;
+        z-index: 1000;
+        pointer-events: none;
+      }
 
-      <!-- Dropdown Menu Drawer -->
-      <nav class="menu-dropdown" id="menu-dropdown-panel">
-        <ul class="dropdown-list" id="dropdown-links-list">
-          <li><a href="index.html" class="dropdown-link" id="drop-link-home">Home</a></li>
-          <li><a href="about.html" class="dropdown-link active" id="drop-link-about">About</a></li>
-          <li><a href="students.html" class="dropdown-link" id="drop-link-students">Students</a></li>
-          <li><a href="institutions.html" class="dropdown-link" id="drop-link-institutions">Institutions</a></li>
-          <li><a href="industry-connect.html" class="dropdown-link" id="drop-link-industry">Industry Connect</a></li>
-          <li><a href="contact.html" class="dropdown-link" id="drop-link-contact">Contact</a></li>
-        </ul>
-        <div class="dropdown-divider"></div>
-        <a href="contact.html" class="dropdown-cta-btn" id="dropdown-cta-action">Start Career Readiness</a>
-      </nav>
-    </header>
+      .site-header-shell .hero-header-row {
+        pointer-events: auto;
+        margin-bottom: 0;
+      }
+
+      .hero-header-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: auto;
+        min-height: 56px;
+        width: 100%;
+        box-sizing: border-box;
+        z-index: 100;
+        background-color: rgba(37, 99, 235, 0.08);
+        border: 1px solid rgba(37, 99, 235, 0.12);
+        border-radius: 999px;
+        box-shadow: 0 4px 16px rgba(37, 99, 235, 0.06);
+        padding: 1px 10px 1px 10px;
+      }
+
+      .hero-header-left-pill {
+        background-color: transparent;
+        border-radius: 999px;
+        padding: 6px 20px 6px 16px;
+        height: 54px;
+        display: flex;
+        align-items: center;
+        gap: 26px;
+        box-shadow: none;
+        border: none;
+        box-sizing: border-box;
+      }
+
+      .hero-logo-link {
+        display: flex;
+        align-items: center;
+        height: 100%;
+      }
+
+      .hero-logo-img {
+        height: 32px;
+        width: auto;
+        display: block;
+        object-fit: contain;
+        mix-blend-mode: multiply;
+      }
+
+      .hero-desktop-nav {
+        display: flex;
+        align-items: center;
+        gap: 26px;
+      }
+
+      .hero-nav-link {
+        font-family: var(--font-heading);
+        font-size: 14.5px;
+        font-weight: 600;
+        color: var(--brand-navy, #0f172a);
+        text-decoration: none;
+        transition: color 0.25s ease;
+        position: relative;
+      }
+
+      .hero-nav-link:hover {
+        color: var(--brand-primary, #2563eb);
+      }
+
+      .hero-nav-link.active {
+        display: inline-flex;
+        align-items: center;
+        background-color: rgba(37, 99, 235, 0.14);
+        color: var(--brand-primary, #2563eb);
+        padding: 6px 14px;
+        border-radius: 999px;
+        font-family: var(--font-heading);
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        text-decoration: none;
+        border: none;
+      }
+
+      .hero-register-pill {
+        background-color: transparent;
+        border-radius: 999px;
+        height: 54px;
+        padding: 0 24px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-heading);
+        font-weight: 700;
+        font-size: 14.5px;
+        color: var(--brand-primary, #2563eb);
+        text-decoration: none;
+        border: none;
+        box-shadow: none;
+        transition: all 0.25s ease;
+        box-sizing: border-box;
+      }
+
+      .hero-register-pill:hover {
+        background-color: rgba(37, 99, 235, 0.12);
+        color: var(--brand-primary, #2563eb);
+        transform: translateY(-1px);
+        box-shadow: none;
+      }
+
+      .hero-menu-toggle-wrapper {
+        display: none;
+        position: relative;
+      }
+
+      @media (max-width: 991px) {
+        .hero-header-row {
+          min-height: 48px;
+        }
+
+        .hero-header-left-pill {
+          height: 46px;
+          padding: 4px 14px;
+        }
+
+        .hero-logo-img {
+          height: 26px;
+        }
+
+        .hero-desktop-nav {
+          display: none;
+        }
+
+        .hero-register-pill {
+          height: 46px;
+          padding: 0 16px;
+          font-size: 13px;
+        }
+      }
+
+      @media (max-width: 767px) {
+        .hero-register-pill {
+          display: none;
+        }
+
+        .hero-menu-toggle-wrapper {
+          display: block;
+        }
+
+        .hero-menu-toggle-btn {
+          height: 44px;
+          padding: 0 16px;
+          border-radius: 999px;
+          font-family: var(--font-heading);
+          font-size: 0.78rem;
+          font-weight: 700;
+          color: var(--brand-primary, #2563eb);
+          background-color: transparent;
+          border: none;
+          box-shadow: none;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          box-sizing: border-box;
+        }
+
+        .hero-menu-toggle-btn:hover,
+        .hero-menu-toggle-btn.open {
+          background-color: rgba(37, 99, 235, 0.12);
+          color: var(--brand-primary, #2563eb);
+          border: none;
+        }
+
+        .hero-menu-toggle-btn span {
+          color: inherit;
+        }
+
+        .hero-menu-toggle-btn .toggle-icon {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          width: 14px;
+          height: 10px;
+        }
+
+        .hero-menu-toggle-btn .toggle-icon span {
+          display: block;
+          width: 100%;
+          height: 2px;
+          background-color: currentColor;
+          transition: all 0.3s ease;
+        }
+
+        .hero-menu-toggle-btn.open .toggle-icon span:first-child {
+          transform: translateY(4px) rotate(45deg);
+        }
+
+        .hero-menu-toggle-btn.open .toggle-icon span:last-child {
+          transform: translateY(-4px) rotate(-45deg);
+        }
+
+        .menu-dropdown {
+          position: absolute;
+          top: calc(100% + 8px);
+          right: 0;
+          width: 240px;
+          background-color: #ffffff;
+          border-radius: 16px;
+          box-shadow: 0 15px 40px rgba(9, 14, 26, 0.12);
+          border: 1px solid rgba(15, 23, 42, 0.06);
+          display: flex;
+          flex-direction: column;
+          padding: 16px;
+          box-sizing: border-box;
+          z-index: 150;
+          opacity: 0;
+          visibility: hidden;
+          transform: translateY(10px);
+          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .menu-dropdown.open {
+          opacity: 1;
+          visibility: visible;
+          transform: translateY(0);
+        }
+
+        .dropdown-list {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+        }
+
+        .dropdown-link {
+          font-family: var(--font-heading);
+          font-size: 14px;
+          font-weight: 600;
+          color: var(--brand-navy, #0f172a);
+          text-decoration: none;
+          display: block;
+          transition: color 0.25s ease;
+        }
+
+        .dropdown-link:hover,
+        .dropdown-link.active {
+          color: var(--brand-primary, #2563eb);
+        }
+
+        .dropdown-divider {
+          height: 1px;
+          background-color: rgba(15, 23, 42, 0.06);
+          margin: 12px 0;
+        }
+
+        .dropdown-cta-btn {
+          background-color: var(--brand-primary, #2563eb);
+          color: #ffffff;
+          border-radius: 10px;
+          padding: 10px;
+          text-align: center;
+          font-family: var(--font-heading);
+          font-weight: 700;
+          font-size: 13px;
+          text-decoration: none;
+          transition: background-color 0.25s ease;
+        }
+
+        .dropdown-cta-btn:hover {
+          background-color: #1d4ed8;
+        }
+      }
+    </style>
+
+    <div class="hero-header-row">
+      <div class="hero-header-left-pill">
+        <a href="index.html" class="hero-logo-link">
+          <img src="assets/images/corpora-logo.png.png" alt="CORPORA Logo" class="hero-logo-img">
+        </a>
+        <nav class="hero-desktop-nav">
+          <a href="index.html" class="hero-nav-link">Home</a>
+          <a href="about.html" class="hero-nav-link active">About</a>
+          <a href="students.html" class="hero-nav-link">Students</a>
+          <a href="institutions.html" class="hero-nav-link">Institutions</a>
+          <a href="industry-connect.html" class="hero-nav-link">Industry Connect</a>
+          <a href="contact.html" class="hero-nav-link">Contact</a>
+        </nav>
+      </div>
+
+      <a href="students.html" class="hero-register-pill">Register</a>
+
+      <div class="hero-menu-toggle-wrapper">
+        <button class="hero-menu-toggle-btn" id="menu-dropdown-toggle" aria-label="Toggle Menu" aria-expanded="false">
+          <span>Menu</span>
+          <div class="toggle-icon">
+            <span></span>
+            <span></span>
+          </div>
+        </button>
+
+        <nav class="menu-dropdown" id="menu-dropdown-panel">
+          <ul class="dropdown-list">
+            <li><a href="index.html" class="dropdown-link">Home</a></li>
+            <li><a href="about.html" class="dropdown-link active">About</a></li>
+            <li><a href="students.html" class="dropdown-link">Students</a></li>
+            <li><a href="institutions.html" class="dropdown-link">Institutions</a></li>
+            <li><a href="industry-connect.html" class="dropdown-link">Industry Connect</a></li>
+            <li><a href="contact.html" class="dropdown-link">Contact</a></li>
+          </ul>
+          <div class="dropdown-divider"></div>
+          <a href="students.html" class="dropdown-cta-btn" id="dropdown-cta-action">Register</a>
+        </nav>
+      </div>
+    </div>
   </div>
 
   <main>

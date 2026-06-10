@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CORPORA Mockup - Option 2: Asymmetrical Editorial Grid">
+  <title>CORPORA Mockup | Option 2 (Editorial Grid)</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/corpora-logo.png.png">
+
+  <!-- Core Theme Style File -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 1. Floating Pill Header -->
+  <div class="header-wrapper" id="floating-header-wrapper">
+    <header class="header-pill" id="main-pill-header">
+      <!-- Logo -->
+      <a href="index.html" class="logo-link" id="header-logo-link">
+        <img src="assets/images/corpora-logo.png.png" alt="CORPORA Logo" class="logo-img" id="header-logo-img">
+      </a>
+      
+      <!-- Menu Toggle Action -->
+      <button class="menu-toggle-btn" id="menu-dropdown-toggle" aria-label="Toggle Menu" aria-expanded="false">
+        <span>Menu</span>
+        <div class="toggle-icon">
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+
+      <!-- Dropdown Menu Drawer -->
+      <nav class="menu-dropdown" id="menu-dropdown-panel">
+        <ul class="dropdown-list" id="dropdown-links-list">
+          <li><a href="index.html" class="dropdown-link active" id="drop-link-home">Home</a></li>
+          <li><a href="about.html" class="dropdown-link" id="drop-link-about">About</a></li>
+          <li><a href="students.html" class="dropdown-link" id="drop-link-students">Students</a></li>
+          <li><a href="institutions.html" class="dropdown-link" id="drop-link-institutions">Institutions</a></li>
+          <li><a href="industry-connect.html" class="dropdown-link" id="drop-link-industry">Industry Connect</a></li>
+          <li><a href="contact.html" class="dropdown-link" id="drop-link-contact">Contact</a></li>
+        </ul>
+        <div class="dropdown-divider"></div>
+        <a href="contact.html" class="dropdown-cta-btn" id="dropdown-cta-action">Start Career Readiness</a>
+      </nav>
+    </header>
+  </div>
+
+  <main>
+    <!-- 2. Asymmetrical Editorial Grid Hero Section -->
+    <section id="home" class="hero-editorial-section" aria-label="Introduction">
+      
+      <!-- Scoped Styles for Editorial Grid Hero -->
+      <style>
+        .hero-editorial-section {
+          position: relative;
+          background-color: #060a13;
+          min-height: 100vh;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          overflow: hidden;
+          box-sizing: border-box;
+          background-image: radial-gradient(circle at 80% 20%, rgba(37, 99, 235, 0.12) 0%, transparent 50%),
+                            radial-gradient(circle at 10% 80%, rgba(37, 99, 235, 0.06) 0%, transparent 40%);
+        }
+
+        .hero-editorial-container {
+          width: 100%;
+          max-width: var(--container-width);
+          margin: 0 auto;
+          padding: 8.5rem 1.5rem 5rem 1.5rem;
+          position: relative;
+          z-index: 4;
+          display: grid;
+          grid-template-columns: 1.1fr 1.2fr;
+          gap: 3.5rem;
+          align-items: center;
+          box-sizing: border-box;
+          min-height: 100vh;
+        }
+
+        /* Left Side Text Content */
+        .hero-content {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          text-align: left;
+        }
+
+        .hero-label {
+          display: inline-flex;
+          align-items: center;
+          font-family: var(--font-heading);
+          font-size: 0.82rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          color: var(--brand-primary);
+          background-color: rgba(37, 99, 235, 0.08);
+          padding: 0.35rem 0.85rem;
+          border-radius: var(--radius-full);
+          margin-bottom: 1.25rem;
+          border: 1px solid rgba(37, 99, 235, 0.15);
+        }
+
+        .hero-heading {
+          font-family: var(--font-heading);
+          font-size: clamp(2rem, 4.5vw, 3.25rem);
+          font-weight: 700;
+          line-height: 1.15;
+          letter-spacing: -0.025em;
+          color: #ffffff;
+          margin-bottom: 1.25rem;
+        }
+
+        .hero-text {
+          font-family: var(--font-body);
+          font-size: clamp(0.95rem, 1.5vw, 1.08rem);
+          font-weight: 400;
+          color: rgba(255, 255, 255, 0.85);
+          line-height: 1.65;
+          margin-bottom: 2rem;
+          max-width: 580px;
+        }
+
+        .hero-actions {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+        }
+
+        .hero-btn {
+          font-family: var(--font-heading);
+          font-size: 0.88rem;
+          font-weight: 700;
+          padding: 0.85rem 1.8rem;
+          border-radius: var(--radius-sm);
+          transition: var(--transition-smooth);
+          white-space: nowrap;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          text-decoration: none;
+          box-sizing: border-box;
+        }
+
+        .hero-btn.btn-primary {
+          background-color: var(--brand-primary);
+          color: #ffffff;
+          border: 1.5px solid var(--brand-primary);
+        }
+
+        .hero-btn.btn-primary:hover {
+          background-color: #ffffff;
+          color: var(--brand-navy);
+          border-color: #ffffff;
+          box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+          transform: translateY(-2px);
+        }
+
+        .hero-btn.btn-secondary {
+          background-color: transparent;
+          color: #ffffff;
+          border: 1.5px solid rgba(255, 255, 255, 0.35);
+        }
+
+        .hero-btn.btn-secondary:hover {
+          background-color: #ffffff;
+          color: var(--brand-navy);
+          border-color: #ffffff;
+          transform: translateY(-2px);
+        }
+
+        /* Right Side Asymmetrical Editorial Grid */
+        .editorial-grid-wrapper {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .editorial-grid {
+          display: grid;
+          grid-template-columns: 1.2fr 1fr;
+          gap: 20px;
+          height: 460px;
+          width: 100%;
+          box-sizing: border-box;
+        }
+
+        .editorial-column-right {
+          display: grid;
+          grid-template-rows: 1fr 1fr;
+          gap: 20px;
+          height: 100%;
+        }
+
+        /* Card Elements */
+        .editorial-card {
+          position: relative;
+          border-radius: 18px;
+          overflow: hidden;
+          background-color: rgba(255, 255, 255, 0.03);
+          border: 1.5px solid rgba(255, 255, 255, 0.1);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+          transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+                      border-color 0.5s ease, 
+                      box-shadow 0.5s ease;
+          cursor: pointer;
+          text-decoration: none;
+          display: block;
+          height: 100%;
+        }
+
+        .editorial-card.card-large {
+          height: 100%;
+        }
+
+        .editorial-card-bg {
+          position: absolute;
+          inset: 0;
+          background-size: cover;
+          background-position: center;
+          transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+          z-index: 1;
+        }
+
+        .editorial-card:hover {
+          transform: translateY(-8px);
+          border-color: var(--brand-primary);
+          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35), 0 0 15px rgba(37, 99, 235, 0.2);
+        }
+
+        .editorial-card:hover .editorial-card-bg {
+          transform: scale(1.06);
+        }
+
+        .editorial-card-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            to top, 
+            rgba(6, 10, 19, 0.92) 0%, 
+            rgba(6, 10, 19, 0.45) 55%, 
+            rgba(6, 10, 19, 0.1) 100%
+          );
+          z-index: 2;
+          transition: background 0.4s ease;
+        }
+
+        .editorial-card:hover .editorial-card-overlay {
+          background: linear-gradient(
+            to top, 
+            rgba(6, 10, 19, 0.95) 0%, 
+            rgba(6, 10, 19, 0.55) 60%, 
+            rgba(6, 10, 19, 0.2) 100%
+          );
+        }
+
+        .editorial-card-content {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          padding: 1.5rem;
+          z-index: 3;
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .editorial-card.card-large .editorial-card-content {
+          padding: 2rem 1.75rem;
+        }
+
+        /* Glass pill badges inside cards to indicate categories/topics */
+        .card-pill {
+          font-family: var(--font-heading);
+          font-size: 0.68rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          color: rgba(255, 255, 255, 0.85);
+          background-color: rgba(255, 255, 255, 0.08);
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          backdrop-filter: blur(5px);
+          -webkit-backdrop-filter: blur(5px);
+          padding: 0.25rem 0.6rem;
+          border-radius: var(--radius-full);
+          margin-bottom: 0.75rem;
+          transition: var(--transition-fast);
+        }
+
+        .editorial-card:hover .card-pill {
+          background-color: var(--brand-primary);
+          border-color: var(--brand-primary);
+          color: #ffffff;
+        }
+
+        .editorial-card-title {
+          font-family: var(--font-heading);
+          font-size: clamp(1rem, 1.8vw, 1.25rem);
+          font-weight: 700;
+          color: #ffffff;
+          line-height: 1.25;
+          margin: 0;
+        }
+
+        .editorial-card.card-large .editorial-card-title {
+          font-size: clamp(1.2rem, 2vw, 1.45rem);
+        }
+
+        /* Prefers reduced motion overrides */
+        @media (prefers-reduced-motion: reduce) {
+          .editorial-card,
+          .editorial-card-bg,
+          .editorial-card-overlay {
+            transition: none !important;
+          }
+          .editorial-card:hover {
+            transform: none !important;
+          }
+          .editorial-card:hover .editorial-card-bg {
+            transform: none !important;
+          }
+        }
+
+        /* --- Mobile / Responsive overrides --- */
+        @media (max-width: 991px) {
+          .hero-editorial-section {
+            min-height: auto;
+            height: auto;
+          }
+
+          .hero-editorial-container {
+            grid-template-columns: 1fr;
+            gap: 3.5rem;
+            padding: 8.5rem 1.5rem 4rem 1.5rem;
+            min-height: auto;
+          }
+
+          .hero-content {
+            align-items: center;
+            text-align: center;
+          }
+
+          .hero-text {
+            margin-left: auto;
+            margin-right: auto;
+          }
+
+          .hero-actions {
+            width: 100%;
+            justify-content: center;
+          }
+
+          .editorial-grid {
+            height: 380px;
+          }
+        }
+
+        @media (max-width: 767px) {
+          .hero-actions {
+            flex-direction: column;
+            width: 100%;
+            gap: 0.75rem;
+          }
+
+          .hero-btn {
+            width: 100%;
+          }
+
+          /* Swipeable Horizontal Grid Row for mobile viewports */
+          .editorial-grid-wrapper {
+            width: 100%;
+            overflow: visible;
+          }
+
+          .editorial-grid {
+            display: flex;
+            flex-direction: row;
+            overflow-x: auto;
+            gap: 16px;
+            height: 240px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            padding: 5px 5px 15px 5px;
+          }
+
+          .editorial-column-right {
+            display: flex;
+            flex-direction: row;
+            gap: 16px;
+            height: 100%;
+          }
+
+          /* Hide custom scrollbar for clean UI */
+          .editorial-grid::-webkit-scrollbar {
+            display: none;
+          }
+          .editorial-grid {
+            -ms-overflow-style: none;  /* IE/Edge */
+            scrollbar-width: none;  /* Firefox */
+          }
+
+          .editorial-card {
+            flex: 0 0 240px; /* Small layout tiles */
+            height: 100%;
+            scroll-snap-align: start;
+          }
+
+          .editorial-card.card-large {
+            flex: 0 0 240px;
+          }
+
+          .editorial-card:hover {
+            transform: translateY(-4px); /* Limit mobile scale */
+          }
+
+          .editorial-card-content {
+            padding: 1rem !important;
+          }
+        }
+
+        @media (max-width: 576px) {
+          .hero-editorial-container {
+            padding: 8rem 1rem 3rem 1rem;
+            gap: 2.5rem;
+          }
+
+          .hero-heading {
+            font-size: 1.85rem;
+          }
+        }
+      </style>
+
+      <div class="hero-editorial-container">
+        
+        <!-- Left content -->
+        <div class="hero-content">
+          <span class="hero-label">Education &times; Industry Bridge</span>
+          <h1 class="hero-heading">Build Career Readiness While You Study</h1>
+          <p class="hero-text">
+            CORPORA connects students with practical training, mentorship, and real industry exposure before graduation.
+          </p>
+          <div class="hero-actions">
+            <a href="students.html" class="hero-btn btn-primary">Register as Student</a>
+            <a href="about.html" class="hero-btn btn-secondary">Explore Program</a>
+          </div>
+        </div>
+
+        <!-- Right Side Asymmetrical Editorial Grid -->
+        <div class="editorial-grid-wrapper">
+          <div class="editorial-grid">
+            
+            <!-- Column 1: Large Vertical Card (Student Growth) -->
+            <a href="students.html" class="editorial-card card-large" id="editorial-card-student">
+              <div class="editorial-card-bg" style="background-image: url('Images and Media/hero-student-success.jpg');"></div>
+              <div class="editorial-card-overlay"></div>
+              <div class="editorial-card-content">
+                <span class="card-pill">Pathway 01</span>
+                <h3 class="editorial-card-title">Student Growth</h3>
+              </div>
+            </a>
+
+            <!-- Column 2: Stack of 2 Smaller Cards -->
+            <div class="editorial-column-right">
+              
+              <!-- Card 2: Industry Exposure -->
+              <a href="industry-connect.html" class="editorial-card card-small" id="editorial-card-industry">
+                <div class="editorial-card-bg" style="background-image: url('Images and Media/hero-industry-training.png');"></div>
+                <div class="editorial-card-overlay"></div>
+                <div class="editorial-card-content">
+                  <span class="card-pill">Pathway 02</span>
+                  <h3 class="editorial-card-title">Industry Exposure</h3>
+                </div>
+              </a>
+
+              <!-- Card 3: Learning to Earning -->
+              <a href="contact.html" class="editorial-card card-small" id="editorial-card-learn-earn">
+                <div class="editorial-card-bg" style="background-image: url('Images and Media/hero-learn-earn-bridge.png');"></div>
+                <div class="editorial-card-overlay"></div>
+                <div class="editorial-card-content">
+                  <span class="card-pill">Pathway 03</span>
+                  <h3 class="editorial-card-title">Learning to Earning</h3>
+                </div>
+              </a>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Image Preloader & Fallback Check JavaScript -->
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const cards = document.querySelectorAll('.editorial-card-bg');
+          
+          // Image fallbacks for cards
+          const fallbacks = [
+            'assets/images/hero-student-success.jpg',
+            'assets/images/hero-industry-training.png',
+            'assets/images/hero-learn-earn-bridge.png'
+          ];
+
+          cards.forEach((cardBg, index) => {
+            const img = new Image();
+            // Extract URL from style
+            img.src = cardBg.style.backgroundImage.replace(/url\(['\"]?(.*?)['\"]?\)/, '$1');
+            img.onerror = function() {
+              cardBg.style.backgroundImage = 'url(' + fallbacks[index] + ')';
+            };
+          });
+        });
+      </script>
+
+    </section>
+  </main>
+
+  <!-- Interaction Logic Script -->
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CORPORA Mockup - Option 1: Cinematic Background Selector">
+  <title>CORPORA Mockup | Option 1 (Cinematic Selector)</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/corpora-logo.png.png">
+
+  <!-- Core Theme Style File -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 1. Floating Pill Header -->
+  <div class="header-wrapper" id="floating-header-wrapper">
+    <header class="header-pill" id="main-pill-header">
+      <!-- Logo -->
+      <a href="index.html" class="logo-link" id="header-logo-link">
+        <img src="assets/images/corpora-logo.png.png" alt="CORPORA Logo" class="logo-img" id="header-logo-img">
+      </a>
+      
+      <!-- Menu Toggle Action -->
+      <button class="menu-toggle-btn" id="menu-dropdown-toggle" aria-label="Toggle Menu" aria-expanded="false">
+        <span>Menu</span>
+        <div class="toggle-icon">
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+
+      <!-- Dropdown Menu Drawer -->
+      <nav class="menu-dropdown" id="menu-dropdown-panel">
+        <ul class="dropdown-list" id="dropdown-links-list">
+          <li><a href="index.html" class="dropdown-link active" id="drop-link-home">Home</a></li>
+          <li><a href="about.html" class="dropdown-link" id="drop-link-about">About</a></li>
+          <li><a href="students.html" class="dropdown-link" id="drop-link-students">Students</a></li>
+          <li><a href="institutions.html" class="dropdown-link" id="drop-link-institutions">Institutions</a></li>
+          <li><a href="industry-connect.html" class="dropdown-link" id="drop-link-industry">Industry Connect</a></li>
+          <li><a href="contact.html" class="dropdown-link" id="drop-link-contact">Contact</a></li>
+        </ul>
+        <div class="dropdown-divider"></div>
+        <a href="contact.html" class="dropdown-cta-btn" id="dropdown-cta-action">Start Career Readiness</a>
+      </nav>
+    </header>
+  </div>
+
+  <main>
+    <!-- 2. Cinematic Background-Switching Hero Section -->
+    <section id="home" class="hero-selector-section" aria-label="Introduction">
+      
+      <!-- Scoped Styles for Selector Hero -->
+      <style>
+        .hero-selector-section {
+          position: relative;
+          background-color: #060a13;
+          min-height: 100vh;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          overflow: hidden;
+          box-sizing: border-box;
+        }
+
+        /* Background Layers Container */
+        .hero-bg-layers {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 1;
+        }
+
+        .hero-bg-slide {
+          position: absolute;
+          inset: 0;
+          background-size: cover;
+          background-position: center;
+          opacity: 0;
+          transform: scale(1.03);
+          transition: opacity 0.8s ease, transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+          z-index: 1;
+        }
+
+        .hero-bg-slide.active {
+          opacity: 1;
+          transform: scale(1.06); /* Cinematic zoom-in */
+          z-index: 2;
+        }
+
+        .slide-bg-1 {
+          background-image: url('Images and Media/hero-student-success.jpg');
+          background-position: 60% center;
+        }
+        .slide-bg-2 {
+          background-image: url('Images and Media/hero-industry-training.png');
+        }
+        .slide-bg-3 {
+          background-image: url('Images and Media/hero-learn-earn-bridge.png');
+        }
+
+        /* Dual overlay layer (text readability & card contrast) */
+        .hero-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(to right, 
+            rgba(6, 10, 19, 0.95) 0%, 
+            rgba(6, 10, 19, 0.75) 45%, 
+            rgba(6, 10, 19, 0.2) 75%, 
+            transparent 100%
+          ),
+          linear-gradient(to top, 
+            rgba(6, 10, 19, 0.9) 0%, 
+            transparent 45%
+          );
+          z-index: 3;
+          pointer-events: none;
+        }
+
+        .hero-selector-container {
+          width: 100%;
+          max-width: var(--container-width);
+          margin: 0 auto;
+          padding: 8.5rem 1.5rem 8.5rem 1.5rem; /* Room for bottom selector cards */
+          position: relative;
+          z-index: 4;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          min-height: 100vh;
+          box-sizing: border-box;
+        }
+
+        /* Text Slides Container */
+        .hero-text-slides-container {
+          position: relative;
+          width: 100%;
+          max-width: 760px;
+          min-height: 280px; /* Fixed footprint to prevent layout shift */
+          margin-bottom: 2rem;
+        }
+
+        .hero-text-slide {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          opacity: 0;
+          visibility: hidden;
+          transform: translateY(20px);
+          transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.5s;
+          pointer-events: none;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          text-align: left;
+        }
+
+        .hero-text-slide.active {
+          position: relative; /* flow layout determined by active slide */
+          opacity: 1;
+          visibility: visible;
+          transform: translateY(0);
+          pointer-events: auto;
+        }
+
+        .hero-label {
+          display: inline-flex;
+          align-items: center;
+          font-family: var(--font-heading);
+          font-size: 0.82rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          color: var(--brand-primary);
+          background-color: rgba(37, 99, 235, 0.08);
+          padding: 0.35rem 0.85rem;
+          border-radius: var(--radius-full);
+          margin-bottom: 1.25rem;
+          border: 1px solid rgba(37, 99, 235, 0.15);
+        }
+
+        .hero-heading {
+          font-family: var(--font-heading);
+          font-size: clamp(2rem, 4.5vw, 3rem);
+          font-weight: 700;
+          line-height: 1.15;
+          letter-spacing: -0.025em;
+          color: #ffffff;
+          margin-bottom: 1.25rem;
+        }
+
+        .hero-text {
+          font-family: var(--font-body);
+          font-size: clamp(0.95rem, 1.5vw, 1.08rem);
+          font-weight: 400;
+          color: rgba(255, 255, 255, 0.85);
+          line-height: 1.65;
+          margin-bottom: 2rem;
+          max-width: 600px;
+        }
+
+        .hero-actions {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+        }
+
+        .hero-btn {
+          font-family: var(--font-heading);
+          font-size: 0.88rem;
+          font-weight: 700;
+          padding: 0.85rem 1.8rem;
+          border-radius: var(--radius-sm);
+          transition: var(--transition-smooth);
+          white-space: nowrap;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          text-decoration: none;
+          box-sizing: border-box;
+        }
+
+        .hero-btn.btn-primary {
+          background-color: var(--brand-primary);
+          color: #ffffff;
+          border: 1.5px solid var(--brand-primary);
+        }
+
+        .hero-btn.btn-primary:hover {
+          background-color: #ffffff;
+          color: var(--brand-navy);
+          border-color: #ffffff;
+          box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+          transform: translateY(-2px);
+        }
+
+        .hero-btn.btn-secondary {
+          background-color: transparent;
+          color: #ffffff;
+          border: 1.5px solid rgba(255, 255, 255, 0.35);
+        }
+
+        .hero-btn.btn-secondary:hover {
+          background-color: #ffffff;
+          color: var(--brand-navy);
+          border-color: #ffffff;
+          transform: translateY(-2px);
+        }
+
+        /* Floating Selector Preview Cards (Bottom Centered) */
+        .hero-selector-cards {
+          position: absolute;
+          bottom: 40px;
+          left: 50%;
+          transform: translateX(-50%);
+          display: flex;
+          gap: 20px;
+          width: 100%;
+          max-width: 1180px;
+          justify-content: center;
+          box-sizing: border-box;
+          padding: 0 1.5rem;
+          z-index: 5;
+        }
+
+        .selector-card {
+          width: 220px;
+          height: 120px;
+          border-radius: 14px;
+          overflow: hidden;
+          position: relative;
+          cursor: pointer;
+          border: 2px solid rgba(255, 255, 255, 0.15);
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+          display: block;
+        }
+
+        .selector-card.active {
+          border-color: var(--brand-primary);
+          transform: translateY(-6px) scale(1.02);
+          box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4), 0 0 15px rgba(37, 99, 235, 0.4);
+        }
+
+        .selector-card:hover:not(.active) {
+          border-color: rgba(255, 255, 255, 0.45);
+          transform: translateY(-4px);
+        }
+
+        .selector-card-bg {
+          position: absolute;
+          inset: 0;
+          background-size: cover;
+          background-position: center;
+          transition: transform 0.6s ease;
+        }
+
+        .selector-card:hover .selector-card-bg {
+          transform: scale(1.05);
+        }
+
+        .selector-card-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(to top, rgba(6, 10, 19, 0.9) 0%, rgba(6, 10, 19, 0.3) 70%, transparent 100%);
+          z-index: 2;
+        }
+
+        .selector-card-content {
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 100%;
+          padding: 0.85rem 1rem;
+          z-index: 3;
+          box-sizing: border-box;
+        }
+
+        .selector-card-title {
+          font-family: var(--font-heading);
+          font-size: 0.85rem;
+          font-weight: 700;
+          color: #ffffff;
+          line-height: 1.2;
+          display: block;
+        }
+
+        /* Prefers reduced motion overrides */
+        @media (prefers-reduced-motion: reduce) {
+          .hero-bg-slide,
+          .hero-text-slide,
+          .selector-card,
+          .selector-card-bg {
+            transition: none !important;
+          }
+          .hero-bg-slide.active {
+            transform: none !important;
+          }
+          .selector-card.active {
+            transform: none !important;
+          }
+        }
+
+        /* --- Mobile / Responsive overrides --- */
+        @media (max-width: 991px) {
+          .hero-selector-section {
+            min-height: auto;
+            height: auto;
+          }
+
+          .hero-selector-container {
+            padding: 8.5rem 1.5rem 3rem 1.5rem;
+            min-height: auto;
+            justify-content: flex-start;
+          }
+
+          .hero-text-slides-container {
+            min-height: auto;
+            margin-bottom: 2rem;
+          }
+
+          .hero-text-slide {
+            position: absolute;
+            height: auto;
+          }
+
+          .hero-text-slide.active {
+            position: relative;
+          }
+
+          .hero-actions {
+            flex-direction: column;
+            width: 100%;
+            gap: 0.75rem;
+          }
+
+          .hero-btn {
+            width: 100%;
+          }
+
+          /* Swipeable Horizontal Grid Row for mobile viewports */
+          .hero-selector-cards {
+            position: relative;
+            bottom: 0;
+            left: 0;
+            transform: none;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            overflow-x: auto;
+            gap: 16px;
+            padding: 10px 5px 20px 5px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+          }
+
+          /* Hide custom scrollbar for clean UI */
+          .hero-selector-cards::-webkit-scrollbar {
+            display: none;
+          }
+          .hero-selector-cards {
+            -ms-overflow-style: none;  /* IE/Edge */
+            scrollbar-width: none;  /* Firefox */
+          }
+
+          .selector-card {
+            flex: 0 0 180px; /* Small layout tiles */
+            height: 100px;
+            scroll-snap-align: start;
+          }
+
+          .selector-card.active {
+            transform: scale(1.01); /* Limit mobile scale */
+          }
+        }
+
+        @media (max-width: 576px) {
+          .hero-selector-container {
+            padding: 8rem 1rem 2.5rem 1rem;
+          }
+
+          .hero-heading {
+            font-size: 1.8rem;
+          }
+        }
+      </style>
+
+      <!-- Background Cinematic Image Layers -->
+      <div class="hero-bg-layers" id="hero-bg-slides">
+        <div class="hero-bg-slide active slide-bg-1" data-index="0"></div>
+        <div class="hero-bg-slide slide-bg-2" data-index="1"></div>
+        <div class="hero-bg-slide slide-bg-3" data-index="2"></div>
+      </div>
+
+      <!-- Scoped Dark Readability Gradient -->
+      <div class="hero-overlay"></div>
+
+      <div class="hero-selector-container">
+        
+        <!-- Text Slides Content Container -->
+        <div class="hero-text-slides-container" id="hero-text-slides">
+          
+          <!-- Slide 1: Student Growth (Default Active) -->
+          <div class="hero-text-slide active" data-slide="0">
+            <span class="hero-label">Student Growth</span>
+            <h1 class="hero-heading">Build Your Career Before Graduation</h1>
+            <p class="hero-text">
+              Gain practical exposure, mentorship, and career clarity while you are still studying.
+            </p>
+            <div class="hero-actions">
+              <a href="students.html" class="hero-btn btn-primary">Register as Student</a>
+              <a href="about.html" class="hero-btn btn-secondary">Explore Program</a>
+            </div>
+          </div>
+
+          <!-- Slide 2: Industry Exposure -->
+          <div class="hero-text-slide" data-slide="1">
+            <span class="hero-label">Industry Exposure</span>
+            <h1 class="hero-heading">Learn from Real Industry Experience</h1>
+            <p class="hero-text">
+              Understand workplace expectations through hands-on training and industry-guided learning.
+            </p>
+            <div class="hero-actions">
+              <a href="industry-connect.html" class="hero-btn btn-primary">Explore Industry Connect</a>
+              <a href="about.html" class="hero-btn btn-secondary">Explore Program</a>
+            </div>
+          </div>
+
+          <!-- Slide 3: Learning to Earning -->
+          <div class="hero-text-slide" data-slide="2">
+            <span class="hero-label">Learning to Earning</span>
+            <h1 class="hero-heading">Bridge the Gap Between Learning and Earning</h1>
+            <p class="hero-text">
+              CORPORA connects students, institutions, and industries to create real career pathways.
+            </p>
+            <div class="hero-actions">
+              <a href="contact.html" class="hero-btn btn-primary">Register Now</a>
+              <a href="about.html" class="hero-btn btn-secondary">Explore Program</a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Floating selector preview cards at bottom -->
+        <div class="hero-selector-cards" id="hero-selectors">
+          
+          <!-- Card 1 Select -->
+          <div class="selector-card active" data-index="0">
+            <div class="selector-card-bg" style="background-image: url('Images and Media/hero-student-success.jpg');"></div>
+            <div class="selector-card-overlay"></div>
+            <div class="selector-card-content">
+              <span class="selector-card-title">Student Growth</span>
+            </div>
+          </div>
+
+          <!-- Card 2 Select -->
+          <div class="selector-card" data-index="1">
+            <div class="selector-card-bg" style="background-image: url('Images and Media/hero-industry-training.png');"></div>
+            <div class="selector-card-overlay"></div>
+            <div class="selector-card-content">
+              <span class="selector-card-title">Industry Exposure</span>
+            </div>
+          </div>
+
+          <!-- Card 3 Select -->
+          <div class="selector-card" data-index="2">
+            <div class="selector-card-bg" style="background-image: url('Images and Media/hero-learn-earn-bridge.png');"></div>
+            <div class="selector-card-overlay"></div>
+            <div class="selector-card-content">
+              <span class="selector-card-title">Learning to Earning</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- JavaScript Selector Controller -->
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const bgSlides = document.querySelectorAll('#hero-bg-slides .hero-bg-slide');
+          const textSlides = document.querySelectorAll('#hero-text-slides .hero-text-slide');
+          const selectorCards = document.querySelectorAll('#hero-selectors .selector-card');
+
+          // Image fallbacks for background slides
+          const fallbacks = [
+            'assets/images/hero-student-success.jpg',
+            'assets/images/hero-industry-training.png',
+            'assets/images/hero-learn-earn-bridge.png'
+          ];
+
+          bgSlides.forEach((slide, index) => {
+            const img = new Image();
+            img.src = slide.style.backgroundImage.replace(/url\(['\"]?(.*?)['\"]?\)/, '$1');
+            img.onerror = function() {
+              slide.style.backgroundImage = 'url(' + fallbacks[index] + ')';
+            };
+          });
+
+          // Selector trigger callback
+          function activateSlide(index) {
+            bgSlides.forEach(slide => slide.classList.remove('active'));
+            textSlides.forEach(slide => slide.classList.remove('active'));
+            selectorCards.forEach(card => card.classList.remove('active'));
+
+            bgSlides[index].classList.add('active');
+            textSlides[index].classList.add('active');
+            selectorCards[index].classList.add('active');
+          }
+
+          // Attach mouseenter and click selectors
+          selectorCards.forEach((card, index) => {
+            // Hover (Desktop > 991px)
+            card.addEventListener('mouseenter', function() {
+              if (window.innerWidth > 991) {
+                activateSlide(index);
+              }
+            });
+
+            // Tap/Click (All viewports)
+            card.addEventListener('click', function() {
+              activateSlide(index);
+            });
+          });
+        });
+      </script>
+
+    </section>
+  </main>
+
+  <!-- Interaction Logic Script -->
+  <script src="app.js"></script>
+</body>
+</html>
