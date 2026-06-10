@@ -68,12 +68,15 @@ html {
 }
 
 body {
+  margin: 0;
+  padding: 0;
   font-family: var(--font-body);
   color: var(--text-secondary);
   background-color: var(--bg-primary);
   line-height: 1.6;
   overflow-x: hidden;
 }
+
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
@@ -115,7 +118,8 @@ img {
 /* --- Floating Pill Header --- */
 .header-wrapper {
   position: fixed;
-  top: 1.8rem;
+  top: 12px;
+  margin-top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
@@ -124,6 +128,7 @@ img {
   display: flex;
   justify-content: center;
 }
+
 
 .header-pill {
   pointer-events: auto; /* enable interactions */
@@ -2139,7 +2144,8 @@ img {
 
 @media (max-width: 768px) {
   .header-wrapper {
-    top: 1.2rem;
+    top: 12px;
+    margin-top: 0;
   }
   
   .header-pill {
@@ -8259,5 +8265,196 @@ img {
     max-width: 280px;
     height: 320px;
     margin: 0 auto;
+  }
+}
+/* ===============================
+   CORPORA Premium Intro Loader
+================================ */
+
+.corpora-intro-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 193, 7, 0.14), transparent 26%),
+    radial-gradient(circle at 80% 70%, rgba(21, 101, 192, 0.16), transparent 30%),
+    linear-gradient(135deg, #f7fbff 0%, #eef5fb 45%, #ffffff 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: corporaIntroExit 0.9s cubic-bezier(0.7, 0, 0.2, 1) forwards;
+  animation-delay: 3.2s;
+}
+
+.corpora-intro-loader::before {
+  content: "";
+  position: absolute;
+  width: 180%;
+  height: 180%;
+  background:
+    linear-gradient(
+      115deg,
+      transparent 35%,
+      rgba(255, 255, 255, 0.8) 48%,
+      transparent 62%
+    );
+  transform: translateX(-100%) rotate(8deg);
+  animation: corporaScreenShine 2.4s ease forwards;
+  animation-delay: 0.7s;
+}
+
+.corpora-intro-bg-shape {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(22px);
+  opacity: 0.8;
+  animation: corporaFloatShape 3.5s ease-in-out infinite alternate;
+}
+
+.shape-one {
+  width: 260px;
+  height: 260px;
+  background: rgba(255, 193, 7, 0.26);
+  top: 18%;
+  left: 18%;
+}
+
+.shape-two {
+  width: 320px;
+  height: 320px;
+  background: rgba(21, 101, 192, 0.18);
+  right: 16%;
+  bottom: 16%;
+  animation-delay: 0.6s;
+}
+
+.corpora-intro-content {
+  position: relative;
+  text-align: center;
+  z-index: 2;
+}
+
+.corpora-word {
+  display: flex;
+  justify-content: center;
+  gap: clamp(8px, 1.5vw, 18px);
+  overflow: hidden;
+}
+
+.corpora-word span {
+  display: inline-block;
+  font-size: clamp(46px, 9vw, 112px);
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #12314f;
+  opacity: 0;
+  transform: translateY(70px) scale(0.92);
+  filter: blur(12px);
+  text-shadow:
+    0 8px 22px rgba(18, 49, 79, 0.16),
+    0 0 28px rgba(255, 193, 7, 0.28);
+  animation: corporaLetterReveal 0.75s cubic-bezier(0.2, 0.9, 0.2, 1.15) forwards;
+}
+
+.corpora-word span:nth-child(1) { animation-delay: 0.15s; }
+.corpora-word span:nth-child(2) { animation-delay: 0.27s; }
+.corpora-word span:nth-child(3) { animation-delay: 0.39s; }
+.corpora-word span:nth-child(4) { animation-delay: 0.51s; }
+.corpora-word span:nth-child(5) { animation-delay: 0.63s; }
+.corpora-word span:nth-child(6) { animation-delay: 0.75s; }
+.corpora-word span:nth-child(7) { animation-delay: 0.87s; }
+
+.corpora-line {
+  width: 0;
+  height: 3px;
+  margin: 24px auto 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, #f5b400, #1565c0, transparent);
+  box-shadow: 0 0 24px rgba(245, 180, 0, 0.45);
+  animation: corporaLineReveal 0.9s ease forwards;
+  animation-delay: 1.25s;
+}
+
+.corpora-intro-content p {
+  margin: 18px 0 0;
+  font-size: clamp(14px, 2vw, 20px);
+  font-weight: 600;
+  letter-spacing: 2.8px;
+  color: rgba(18, 49, 79, 0.78);
+  opacity: 0;
+  transform: translateY(14px);
+  animation: corporaTaglineReveal 0.75s ease forwards;
+  animation-delay: 1.55s;
+}
+
+@keyframes corporaLetterReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(70px) scale(0.92);
+    filter: blur(12px);
+  }
+
+  70% {
+    opacity: 1;
+    transform: translateY(-8px) scale(1.04);
+    filter: blur(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes corporaLineReveal {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+
+  to {
+    width: min(420px, 72vw);
+    opacity: 1;
+  }
+}
+
+@keyframes corporaTaglineReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes corporaScreenShine {
+  to {
+    transform: translateX(100%) rotate(8deg);
+  }
+}
+
+@keyframes corporaFloatShape {
+  from {
+    transform: translateY(0) scale(1);
+  }
+
+  to {
+    transform: translateY(-22px) scale(1.06);
+  }
+}
+
+@keyframes corporaIntroExit {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+    visibility: visible;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.04);
+    visibility: hidden;
+    pointer-events: none;
   }
 }
